@@ -1,26 +1,189 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-outfit), sans-serif;
+  --color-brand-blue: #3b82f6;
+  --color-brand-indigo: #6366f1;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* Pure White */
+  --foreground: #09090b; /* Deep Charcoal */
+  --card-bg: #ffffff;
+  --border-color: #e4e4e7; /* zinc-200 */
+
+  /* Dynamic theme variables (Default Red) */
+  --glow-shadow-nav: 0 0 8px rgba(244, 63, 94, 0.4);
+  --glow-shadow-md: 0 4px 25px rgba(244, 63, 94, 0.06);
+  --glow-btn: rgba(244, 63, 94, 0.2);
+  --glow-ring: rgba(244, 63, 94, 0.05);
+
+  /* Mesh colors */
+  --mesh-color-1: rgba(244, 63, 94, 0.02);
+  --mesh-color-2: rgba(220, 38, 38, 0.015);
+  --mesh-color-3: rgba(251, 113, 133, 0.025);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+.theme-green {
+  /* Override standard Tailwind rose variables to emerald hex codes */
+  --color-rose-50: #ecfdf5;
+  --color-rose-100: #d1fae5;
+  --color-rose-150: #a7f3d0;
+  --color-rose-200: #a7f3d0;
+  --color-rose-250: #6ee7b7;
+  --color-rose-300: #6ee7b7;
+  --color-rose-400: #34d399;
+  --color-rose-450: #10b981;
+  --color-rose-500: #10b981;
+  --color-rose-600: #059669;
+  --color-rose-650: #047857;
+  --color-rose-700: #047857;
+  --color-rose-800: #065f46;
+  --color-rose-950: #022c22;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Dynamic theme variables (Green) */
+  --glow-shadow-nav: 0 0 8px rgba(16, 185, 129, 0.4);
+  --glow-shadow-md: 0 4px 25px rgba(16, 185, 129, 0.06);
+  --glow-btn: rgba(16, 185, 129, 0.2);
+  --glow-ring: rgba(16, 185, 129, 0.05);
+
+  /* Mesh colors */
+  --mesh-color-1: rgba(16, 185, 129, 0.02);
+  --mesh-color-2: rgba(5, 150, 105, 0.015);
+  --mesh-color-3: rgba(52, 211, 153, 0.025);
 }
 
 body {
-  background: var(--background);
+  font-family: var(--font-outfit), sans-serif;
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 9999px;
+  border: 1px solid #e4e4e7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Red & White Light Backdrop Mesh */
+.glow-mesh {
+  background-image: 
+    radial-gradient(at 0% 0%, var(--mesh-color-1) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, var(--mesh-color-2) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, var(--mesh-color-3) 0px, transparent 50%);
+}
+
+.mesh-grid {
+  background-image: linear-gradient(rgba(9, 9, 11, 0.012) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(9, 9, 11, 0.012) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Premium Light Inputs (Crimson Accent) */
+.input-premium {
+  @apply w-full rounded-2xl border border-zinc-200 bg-white/80 backdrop-blur-sm p-3 text-xs text-zinc-900 placeholder-zinc-400 outline-none transition-all duration-300 focus:border-rose-500 focus:bg-white;
+}
+.input-premium:focus {
+  box-shadow: 0 0 0 4px var(--glow-ring);
+}
+
+/* Premium Light Card */
+.card-premium {
+  @apply bg-white border border-zinc-200/80 rounded-3xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.01),0_8px_20px_-4px_rgba(0,0,0,0.02)] transition-all duration-300;
+}
+
+.card-premium-hover {
+  @apply hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-200/40 hover:-translate-y-[2px] active:scale-[0.99];
+}
+
+/* Vermillion Accent Primary Button */
+.btn-primary {
+  @apply rounded-xl bg-rose-700 text-xs font-black uppercase tracking-wider text-white transition-all duration-200 hover:bg-rose-600 active:scale-[0.98] cursor-pointer shadow-sm;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 15px var(--glow-btn);
+}
+
+/* Custom shadow utilities */
+.glow-nav-shadow {
+  box-shadow: var(--glow-shadow-nav);
+}
+
+.glow-card-shadow {
+  box-shadow: var(--glow-shadow-md);
+}
+
+
+.btn-secondary {
+  @apply rounded-xl border border-zinc-200 bg-white px-5 py-3 text-xs font-black uppercase tracking-wider text-zinc-600 transition-all duration-200 hover:bg-zinc-50 hover:text-zinc-900 active:scale-[0.98] cursor-pointer;
+}
+
+/* Red-White text gradients */
+.text-gradient-neon {
+  @apply bg-gradient-to-r from-zinc-950 via-zinc-800 to-rose-600 bg-clip-text text-transparent;
+}
+
+/* Minimalist light red badge */
+.badge-glow {
+  @apply border border-rose-100 bg-rose-50/50 text-rose-600 shadow-sm;
+}
+
+/* Custom Keyframe Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, #f4f4f5 25%, #e4e4e7 50%, #f4f4f5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
