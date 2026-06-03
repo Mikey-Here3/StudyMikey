@@ -140,24 +140,7 @@ export default function LoginPage() {
           </Link>
         </p>
 
-        {/* Demo Mode credentials checklist */}
-        <div className="mt-6 border-t border-zinc-100 pt-5 text-[10px] font-bold text-zinc-400">
-          <div className="uppercase tracking-widest text-zinc-500 mb-2">Demo Credentials:</div>
-          <div className="space-y-1.5 font-mono text-zinc-400">
-            <div>
-              🧑‍🎓 Student: <span className="text-zinc-600">student@studymikey.com</span> (pass: <span className="text-zinc-600">password123</span>)
-            </div>
-            <div>
-              🧑‍🏫 Teacher: <span className="text-zinc-600">teacher@nu.edu.pk</span> (pass: <span className="text-zinc-600">password123</span>)
-            </div>
-            <div>
-              💼 Recruiter: <span className="text-zinc-600">recruiter@studymikey.com</span> (pass: <span className="text-zinc-600">password123</span>)
-            </div>
-            <div>
-              🛡️ Admin: <span className="text-zinc-600">admin@studymikey.com</span> (pass: <span className="text-zinc-600">admin123</span>)
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   );

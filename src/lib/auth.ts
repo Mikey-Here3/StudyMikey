@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET || "dev-fallback-secret-change-in-production",
   session: {
     strategy: "jwt",
   },
